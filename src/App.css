@@ -1,0 +1,54 @@
+button {
+    margin: 5px;
+}
+
+:root {
+    --bs-primary: #6558f4; /* Set your custom primary color */
+}
+
+.btn-primary {
+    background-color: #6558f4; /* Your custom primary color */
+    border-color: #6558f4; /* Match border color */
+}
+
+.btn-primary:hover {
+    background-color: #5a4bc2; /* Darker shade for hover */
+    border-color: #5a4bc2; /* Match border color */
+}
+
+.btn-outline-primary {
+    color: #6558f4; /* Custom primary text color */
+    border-color: #6558f4; /* Custom primary border color */
+}
+
+.btn-outline-primary:hover {
+    background-color: #6558f4; /* Set background on hover */
+    color: white; /* Change text color on hover */
+    border-color: #6558f4; /* Keep border color */
+}
+
+.form-control {
+    border-color: var(--bs-primary);
+}
+
+.form-control:focus {
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 0.2rem rgba(101, 88, 244, 0.25); /* Slight shadow effect */
+}
+
+.arrow-icon-hover {
+    cursor: pointer; /* Change the cursor to pointer */
+    transition: color 0.2s ease; /* Smooth transition for color change */
+}
+  
+.card-title:hover {
+    text-decoration: underline; /* Underline on hover */
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+.goBackButton:hover {
+    color: #6558f4;
+    cursor: pointer;
+}
+  
+  

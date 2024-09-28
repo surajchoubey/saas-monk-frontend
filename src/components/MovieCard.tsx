@@ -1,5 +1,4 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { Card, Button } from 'react-bootstrap';
 import Movie from '../interfaces/movie';

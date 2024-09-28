@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Navbar, Container } from 'react-bootstrap'; // Import Navbar and Container from react-bootstrap
 import MovieModal from './MovieModal';
 import ReviewModal from './ReviewModal';
@@ -33,7 +32,7 @@ const NavigationBar: React.FC<NavBarProps> = ({ selectedMovie, movies, setMovies
     <>
       <Navbar expand="lg" style={{ backgroundColor: "#e3e7ed" }}>
         <Container fluid>
-          <Navbar.Brand href="#" className="mb-0 h1">MOVIECRITIC</Navbar.Brand>
+          <Navbar.Brand href="#" className="mb-0 h1">MOVIECRITIC </Navbar.Brand> <a href="https://github.com/surajchoubey/smss-monk-frontend">GITHUB CODE</a>
           <div>
             {
 				selectedMovie ? null

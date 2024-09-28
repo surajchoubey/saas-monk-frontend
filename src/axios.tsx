@@ -1,8 +1,9 @@
 import axios from 'axios';
 
-// Create an instance with the base URL of your NestJS backend
+const BASE_URL = "https://smss-monk-backend.onrender.com/";
+
 const api = axios.create({
-  baseURL: 'http://localhost:5001/', // Replace with your backend URL
+  baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },

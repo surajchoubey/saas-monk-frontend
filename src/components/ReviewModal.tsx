@@ -31,7 +31,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
 }) => {
 
   // Hooks must be called outside of any condition
-  const [formMovieId, setFormMovieId] = useState(selectedReview?._id ?? "");
+  const [formMovieId, setFormMovieId] = useState("");
   const [formName, setFormName] = useState("");
   const [formRating, setFormRating] = useState(10);
   const [formComments, setFormComments] = useState("");
@@ -39,12 +39,19 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
   // Effect to set the form state when editing
   useEffect(() => {
     if (isEditing && selectedReview) {
-      setFormMovieId(selectedReview._id);
+      setFormMovieId(selectedReview.movieId);
       setFormName(selectedReview.reviewerName);
       setFormRating(selectedReview.rating);
       setFormComments(selectedReview.reviewComments);
+    } else if (!isEditing && selectedMovie && selectedMovie._id) {
+      setFormMovieId(selectedMovie._id);
+      setFormName("");
+      setFormRating(10);
+      setFormComments("");
+    } else {
+      // alert("ERROR: Insert movies before putting review")
     }
-  }, [isEditing, selectedReview]);
+  }, [selectedReview, isEditing, selectedMovie, show]);
 
   // Early returns should come after the hooks to avoid conditional hook calls
   if (isEditing && selectedMovie == null) return null;
@@ -79,7 +86,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
           }
           setReviews(tempReviews);
         }
-      } else if (!isEditing && reviews) {
+      } else if (!isEditing && reviews && reviews.length >= 0) {
         const response = await api.post(`/reviews/`, formData);
         let tempReviews = [...reviews, response.data];
         let sum = 0;
@@ -93,7 +100,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
         throw new Error("PUT/POST did not happen");
       }
       handleClose();
-      setFormMovieId("");
+      // setFormMovieId("");
       setFormName("");
       setFormRating(10);
       setFormComments("");
@@ -111,13 +118,17 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
         <Form>
           <Form.Group controlId="formSelectMovie">
             <Form.Label>Select Movie</Form.Label>
-              <Form.Control as="select" value={formMovieId} onChange={(e) => { setFormMovieId(e.target.value) }}>  
-                  { movies && movies.length ? movies.map(movie => <option key={movie._id} value={movie._id}>{movie.title}</option> ) : null }
+                <Form.Control as="select" value={formMovieId} required onChange={(e) => { setFormMovieId(e.target.id); console.log(e.target.textContent); }}>  
+                { movies && movies.length ? 
+                  movies.map(movie => {
+                    return <option key={movie._id} value={movie._id}>{movie.title}</option>;
+                  })
+                : null }
               </Form.Control>
           </Form.Group>
           <Form.Group controlId="formYourName">
             <Form.Label>Your Name</Form.Label>
-            <Form.Control type="text" placeholder="Your name" value={formName} onChange={(e) => { setFormName(e.target.value) }}/>
+            <Form.Control type="text" placeholder="Your name" value={formName} required onChange={(e) => { setFormName(e.target.value) }}/>
           </Form.Group>
           <Form.Group controlId="formRating">
             <Form.Label>Rating: {formRating}</Form.Label>
@@ -130,7 +141,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
           </Form.Group>
           <Form.Group controlId="formReviewComments">
             <Form.Label>Comments</Form.Label>
-            <Form.Control as="textarea" rows={3} placeholder="Enter your review comments" value={formComments} onChange={(e) => { setFormComments(e.target.value) }}/>
+            <Form.Control as="textarea" required rows={3} placeholder="Enter your review comments" value={formComments} onChange={(e) => { setFormComments(e.target.value) }}/>
           </Form.Group>
         </Form>
       </Modal.Body>

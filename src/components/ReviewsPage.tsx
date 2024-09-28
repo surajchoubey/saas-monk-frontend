@@ -53,7 +53,8 @@ const ReviewsPage: React.FC<ReviewsPageProps> = ({ movie, setSelectedMovie, movi
 
   const handleDelete = async (reviewId: string) => {
     try {
-      await api.delete(`/reviews/${reviewId}`);
+      const response = await api.delete(`/reviews/${reviewId}`);
+      if (response.status !== 200) throw new Error("wrong");
       if (reviews && reviews.length >= 0) {
         let tempReviews = reviews.filter(review => review._id !== reviewId);
         let sum = 0;
@@ -81,7 +82,7 @@ const ReviewsPage: React.FC<ReviewsPageProps> = ({ movie, setSelectedMovie, movi
     };
 
     fetchReviews();
-  }, [reviewSearchBar, movie, showModal]);
+  }, [reviewSearchBar, movie, showModal, setAvgRating, setReviews]);
 
   return (
     <Container className='mt-3'>

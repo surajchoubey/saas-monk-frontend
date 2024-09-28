@@ -18,10 +18,12 @@ const MovieCard: React.FC<CardProps> = ({ movie, setSelectedMovie, handleMovieMo
 
     const handleDelete = async (movieId: string) => {
         try {
-            console.log(movieId, "delete")
-            await api.delete(`movies/${movieId}`);
-            let tempMovies = movies.filter(movie => movie._id !== movieId);
-            setMovies(tempMovies);
+            if (movieId.length === 0) throw new Error("wrong");
+            const response = await api.delete(`movies/${movieId}`);
+            if (response.status === 200) {
+                let tempMovies = movies.filter(movie => movie._id !== movieId);
+                setMovies(tempMovies);
+            }
         } catch (e) {
             alert("Error" + e);
         }

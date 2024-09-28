@@ -31,7 +31,7 @@ const MovieModal: React.FC<MovieModalProps> = ({
   const [movieReleaseDate, setMovieReleaseDate] = useState("");
 
   const handleSubmit = async () => {
-    console.log(movieTitle, movieReleaseDate);
+    // console.log(movieTitle, movieReleaseDate);
     try {
       if (isEditing && formMovieId && formMovieId.length > 0 && movies && movies.length > 0) {
         const response = await api.put(`/movies/${formMovieId}`, { title: movieTitle, releaseDate: movieReleaseDate });
@@ -57,6 +57,9 @@ const MovieModal: React.FC<MovieModalProps> = ({
         alert("PUT/POST did not happen");
         throw new Error("PUT/POST did not happen");
       }
+      // setFormMovieId("");
+      setMovieTitle("");
+      setMovieReleaseDate("");
       handleClose();
     } catch (e) {
       alert("Error occurred " + e);

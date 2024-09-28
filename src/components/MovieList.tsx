@@ -27,7 +27,7 @@ const MovieList: React.FC<MovieListProps> = ({ movies, setSelectedMovie, setMovi
     return (
         <Row className="justify-content-center">
         {movies && movies.map((movie) => (
-            <Col xs={12} sm={6} md={4} lg={3} key={movie._id} className="mb-4">
+            <Col xs={12} sm={6} md={4} lg={4} key={movie._id} className="mb-4">
                 <MovieCard movie={movie} handleMovieModalShow={() => { handleMovieModalShow(movie); }} setSelectedMovie={setSelectedMovie} movies={movies} setMovies={setMovies} />
             </Col>
         ))}

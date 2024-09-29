@@ -103,7 +103,7 @@ const ReviewsPage: React.FC<ReviewsPageProps> = ({ movie, setSelectedMovie, movi
                 type="email" 
                 id="exampleInputEmail1" 
                 aria-describedby="emailHelp" 
-                placeholder="Search your favourite movie here..."
+                placeholder="Search reviews here..."
                 className="border-primary"
                 defaultValue={reviewSearchBar}
                 onChange={(e) => { handleReviewsSearchBarChange(e.target.value); }}

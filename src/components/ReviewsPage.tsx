@@ -38,7 +38,10 @@ const ReviewsPage: React.FC<ReviewsPageProps> = ({ movie, setSelectedMovie, movi
   const [reviewSearchBar, setReviewsSearchBar] = useState("");
   const handleReviewsSearchBarChange = (value: string) => setReviewsSearchBar(value);
 
-  const handleShowReviews = () => setSelectedMovie(null);
+  const handleShowReviews = () => {
+    setSelectedMovie(null);
+    setReviews([]);
+  }
   const [showModal, setShowModal] = useState<boolean>(false);
 
   const handleReviewModalClose = () => {

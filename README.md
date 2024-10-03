@@ -3,8 +3,8 @@
 PLS NOTE: Backend takes 50s for cold restart pls wait after triggering it for the first time
 
 
-### FRONTEND GITHUB CODE = https://github.com/surajchoubey/smss-monk-frontend
-### BACKEND GITHUB CODE = https://github.com/surajchoubey/smss-monk-backend
+### FRONTEND GITHUB CODE = https://github.com/surajchoubey/saas-monk-frontend
+### BACKEND GITHUB CODE = https://github.com/surajchoubey/saas-monk-backend
 ### BACKEND DEPLOYMENT SITE = https://smss-monk-backend.onrender.com
 
 # SNAPSHOTS (4 TOTAL)
